@@ -33,38 +33,13 @@
                 android:visibility="invisible"
                 android:text="@string/winner" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/team_a"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/team_a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="#5d5d5d"
-                        android:text="@string/team_a" />
-                    <ImageView
-                        android:id="@+id/teama_photo"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:scaleType="centerInside"
-                        android:cropToPadding="true"
-                        android:background="@android:color/darker_gray"/>
-                    <ImageButton
-                        android:id="@+id/teama_camera"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_camera"
-                        android:clickable="true"/>
-                </LinearLayout>
-            </LinearLayout>
+                android:padding="10dp"
+                android:textColor="#5d5d5d"
+                android:text="@string/team_a" />
 
             <TextView
                 android:id="@+id/score_a"
@@ -118,38 +93,13 @@
                 android:visibility="invisible"
                 android:text="@string/winner" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/team_b"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/team_b"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="#5d5d5d"
-                        android:text="@string/team_b" />
-                    <ImageView
-                        android:id="@+id/teamb_photo"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:scaleType="centerInside"
-                        android:cropToPadding="true"
-                        android:background="@android:color/darker_gray"/>
-                    <ImageButton
-                        android:id="@+id/teamb_camera"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_camera"
-                        android:clickable="true"/>
-                </LinearLayout>
-            </LinearLayout>
+                android:padding="10dp"
+                android:textColor="#5d5d5d"
+                android:text="@string/team_b" />
 
             <TextView
                 android:id="@+id/score_b"

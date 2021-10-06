@@ -2,19 +2,24 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import java.io.File
-import java.util.*
+import com.example.project1.com.example.project1.Game
 
 private const val TAG = "BBViewModel"
 
 class BBViewModel : ViewModel() {
-    private val gameRepository = GameRepository.get()
-    val gameListLiveData = gameRepository.getGames()
+    val games = mutableListOf<Game>()
 
+    init {
+        for (i in 0 until 100) {
+            val game = Game()
+            game.title = "Game #$i"
+            games += game
+        }
+    }
     var currentIndex = 0
     var isGameOverCalled = false
-    private val teamA = Team(UUID.randomUUID(),"Team A", 0, false)
-    private val teamB = Team(UUID.randomUUID(),"Team B", 0, false)
+    private val teamA = Team("Team A", 0, false)
+    private val teamB = Team("Team B", 0, false)
 
 //    fun newGame(): Int {
 //        currentIndex++
@@ -107,13 +112,5 @@ class BBViewModel : ViewModel() {
 
     fun getTeamBName(): String {
         return teamB.name
-    }
-
-    fun getPhotoFileTeamA(game: Game): File {
-        return gameRepository.getPhotoFileTeamA(game)
-    }
-
-    fun getPhotoFileTeamB(game: Game): File {
-        return gameRepository.getPhotoFileTeamB(game)
     }
 }

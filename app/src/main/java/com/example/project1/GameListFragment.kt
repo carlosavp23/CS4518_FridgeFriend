@@ -9,22 +9,28 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.project1.com.example.project1.Game
 
 private const val TAG = "GameListFragment"
 
 class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
-    private var adapter: GameAdapter? = GameAdapter(emptyList())
+    private var adapter: GameAdapter? = null
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
 //    }
 
     private val bbViewModel: BBViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "Total games: ${bbViewModel.games.size}")
+    }
 
     companion object {
         fun newInstance(): GameListFragment {
@@ -42,25 +48,14 @@ class GameListFragment : Fragment() {
             view.findViewById(R.id.game_recycler_view) as RecyclerView
         gameRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        gameRecyclerView.adapter = adapter
+        updateUI()
 
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        bbViewModel.gameListLiveData.observe(
-            viewLifecycleOwner,
-            Observer { games ->
-                games?.let {
-                    Log.i(TAG, "Got games ${games.size}")
-                    updateUI(games)
-                }
-        })
-    }
-
-    private fun updateUI(games: List<Game>) {
-        adapter = GameAdapter(games)
+    private fun updateUI() {
+        val crimes = bbViewModel.games
+        adapter = GameAdapter(crimes)
         gameRecyclerView.adapter = adapter
     }
 

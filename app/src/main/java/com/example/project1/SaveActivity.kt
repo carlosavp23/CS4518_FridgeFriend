@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 
 private const val TAG = "SaveActivity"
-private const val KEY_INDEX = "index"
+//private const val KEY_INDEX = "index"
 private const val EXTRA_SHOW_SAVE =
     "com.example.project1.show_save"
 
@@ -23,15 +23,16 @@ class SaveActivity : AppCompatActivity() {
     private lateinit var team_a_input: EditText
     private lateinit var team_b_input: EditText
 
-    private val bbViewModel: BBViewModel by lazy {
-       ViewModelProviders.of(this).get(BBViewModel::class.java) }
+//    private val bbViewModel: BBViewModel by lazy {
+//        ViewModelProviders.of(this).get(BBViewModel::class.java)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_save)
 
-        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-       bbViewModel.currentIndex = currentIndex
+//        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+//        bbViewModel.currentIndex = currentIndex
 
         save_string = findViewById(R.id.save_string)
         new_game = findViewById(R.id.new_game)
