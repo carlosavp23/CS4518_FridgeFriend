@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Project1</string>
+    <string name="team_a">Team A</string>
+    <string name="team_b">Team B</string>
+    <string name="score_a">0</string>
+    <string name="score_b">0</string>
+    <string name="add_3_a">+3 POINTS</string>
+    <string name="add_3_b">+3 POINTS</string>
+    <string name="add_2_a">+2 POINTS</string>
+    <string name="add_2_b">+2 POINTS</string>
+    <string name="free_throw_a">FREE THROW</string>
+    <string name="free_throw_b">FREE THROW</string>
+    <string name="reset">RESET</string>
+    <string name="game_over">Game Over</string>
+    <string name="winner">Winner!</string>
+    <string name="name_of_app">Basketball App</string>
+    <string name="saved">Game Info Saved</string>
+    <string name="save">Save</string>
+    <string name="new_game">New Game</string>
+    <string name="history_games">Game History</string>
+    <string name="team_a_name">Team A Name:</string>
+    <string name="team_b_name">Team B Name:</string>
+    <string name="team_a_name_hint">Team A Name</string>
+    <string name="team_b_name_hint">Team B Name</string>
+    <string name="parrot_icon">Parrot Icon</string>
+    <string name="pirate_icon">Pirate Icon</string>
+</resources>
