@@ -16,7 +16,6 @@ class ItemViewModel : ViewModel() {
         }
     }
     var currentIndex = 0
-    var isGameOverCalled = false
     private val teamA = Team("Team A", 0, false)
 
 
