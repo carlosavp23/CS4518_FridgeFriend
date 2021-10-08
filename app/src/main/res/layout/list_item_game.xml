@@ -10,31 +10,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="start">
+
         <ImageView
-            android:id="@+id/game_icon"
-            android:layout_width="60dp"
+            android:id="@+id/check_box"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:contentDescription="@string/parrot_icon"
             android:src="@drawable/blank_check_box" />
+
         <TextView
-            android:id="@+id/game_number"
-            android:layout_width="160dp"
+            android:id="@+id/food_name"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:text="Game Number" />
+            android:text="Food Item" />
 
         <ImageView
-            android:id="@+id/game_icon"
-            android:layout_width="60dp"
+            android:id="@+id/food_image"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:contentDescription="@string/parrot_icon"
-            android:src="@drawable/parrot" />
+            android:src="@drawable/salad" />
 
         <TextView
-            android:id="@+id/game_date"
-            android:layout_width="160dp"
+            android:id="@+id/food_expiration"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:text="Game Date" />
-
+            android:text="Expiration" />
 
     </LinearLayout>
 </LinearLayout>
