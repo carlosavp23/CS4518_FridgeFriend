@@ -2,29 +2,23 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.project1.com.example.project1.Game
 
-private const val TAG = "BBViewModel"
+private const val TAG = "ItemViewModel"
 
-class BBViewModel : ViewModel() {
-    val games = mutableListOf<Game>()
+class ItemViewModel : ViewModel() {
+    val items = mutableListOf<Item>()
 
     init {
         for (i in 0 until 100) {
-            val game = Game()
-            game.title = "Game #$i"
+            val item = Item()
+            item.title = "Item #$i"
             games += game
         }
     }
     var currentIndex = 0
     var isGameOverCalled = false
     private val teamA = Team("Team A", 0, false)
-    private val teamB = Team("Team B", 0, false)
 
-//    fun newGame(): Int {
-//        currentIndex++
-//        return currentIndex
-//    }
 
     fun addPoints(team: String, numPoints: Int): String {
         Log.i(TAG, "addPoints in BBViewModel")

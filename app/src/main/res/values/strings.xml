@@ -13,15 +13,14 @@
     <string name="reset">RESET</string>
     <string name="game_over">Game Over</string>
     <string name="winner">Winner!</string>
-    <string name="name_of_app">Basketball App</string>
-    <string name="saved">Game Info Saved</string>
+    <string name="add_item_title">Add Item</string>
+    <string name="saved">Item Added</string>
     <string name="save">Save</string>
     <string name="new_game">New Game</string>
-    <string name="history_games">Game History</string>
-    <string name="team_a_name">Team A Name:</string>
-    <string name="team_b_name">Team B Name:</string>
-    <string name="team_a_name_hint">Team A Name</string>
-    <string name="team_b_name_hint">Team B Name</string>
-    <string name="parrot_icon">Parrot Icon</string>
-    <string name="pirate_icon">Pirate Icon</string>
+    <string name="submit_button">SUBMIT</string>
+    <string name="food_name_hint">Food Name</string>
+    <string name="exp_date_hint">Expiration Date</string>
+    <string name="list_of_existing_food">List Of Food In Fridge</string>
+    <string name="list_for_shopping">Shopping List</string>
+    <string name="default_web_client_id" translatable="false">123.apps.googolplexes.com</string>
 </resources>
