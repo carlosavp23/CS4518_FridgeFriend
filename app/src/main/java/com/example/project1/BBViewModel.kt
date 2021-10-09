@@ -2,18 +2,20 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.project1.com.example.project1.Food
 import com.example.project1.com.example.project1.Game
 
 private const val TAG = "BBViewModel"
 
 class BBViewModel : ViewModel() {
-    val games = mutableListOf<Game>()
+    val foods = mutableListOf<Food>()
 
     init {
         for (i in 0 until 100) {
-            val game = Game()
-            game.title = "Game #$i"
-            games += game
+            val food = Food()
+            food.name = "Food #$i"
+            food.expiration = "Expiration #$i"
+            foods += food
         }
     }
     var currentIndex = 0

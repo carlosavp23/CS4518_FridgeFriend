@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.com.example.project1.Game
+import com.example.project1.com.example.project1.Food
 
 private const val TAG = "GameListFragment"
 
@@ -29,7 +30,7 @@ class GameListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total games: ${bbViewModel.games.size}")
+        Log.d(TAG, "Total games: ${bbViewModel.foods.size}")
     }
 
     companion object {
@@ -54,37 +55,37 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val crimes = bbViewModel.games
-        adapter = GameAdapter(crimes)
+        val games = bbViewModel.foods
+        adapter = GameAdapter(games)
         gameRecyclerView.adapter = adapter
     }
 
     private inner class GameHolder(view: View)
         : RecyclerView.ViewHolder(view) {
 
-        private lateinit var game: Game
+//        private lateinit var game: Game
+        private lateinit var food: Food
 
-        private val numberTextView: TextView = itemView.findViewById(R.id.game_number)
-        private val dateTextView: TextView = itemView.findViewById(R.id.game_date)
-        private val teamsTextView: TextView = itemView.findViewById(R.id.game_teams)
-        private val scoresTextView: TextView = itemView.findViewById(R.id.game_scores)
-        private val iconImageView: ImageView = itemView.findViewById(R.id.game_icon)
+        private val checkBoxImageView: ImageView = itemView.findViewById(R.id.check_box)
+        private val foodNameTextView: TextView = itemView.findViewById(R.id.food_name)
+        private val foodImageImageView: ImageView = itemView.findViewById(R.id.food_image)
+        private val foodExpirationTextView: TextView = itemView.findViewById(R.id.food_expiration)
 
-        fun bind(game: Game) {
-            this.game = game
-            numberTextView.text = this.game.title
-            dateTextView.text = this.game.date.toString()
-            teamsTextView.text = this.game.teamA.name.toString().plus(" : ").plus(this.game.teamB.name.toString())
-            scoresTextView.text = this.game.teamA.score.toString().plus(" : ").plus(this.game.teamB.score.toString())
-            if(this.game.teamA.isWinner){
-                iconImageView.setImageResource(R.drawable.parrot)
-            } else if(this.game.teamB.isWinner){
-                iconImageView.setImageResource(R.drawable.pirate)
+        fun bind(food: Food) {
+            this.food = food
+            val foodImageString = this.food.imageString
+            if(this.food.isChecked){
+                checkBoxImageView.setImageResource(R.drawable.checkbox)
+            } else{
+                checkBoxImageView.setImageResource(R.drawable.blank_check_box)
             }
+            foodNameTextView.text = this.food.name
+            foodImageImageView.setImageResource(R.drawable.salad)
+            foodExpirationTextView.text = this.food.expiration
         }
     }
 
-    private inner class GameAdapter(var games: List<Game>)
+    private inner class GameAdapter(var foods: List<Food>)
         : RecyclerView.Adapter<GameHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -93,11 +94,11 @@ class GameListFragment : Fragment() {
             return GameHolder(view)
         }
 
-        override fun getItemCount() = games.size
+        override fun getItemCount() = foods.size
 
         override fun onBindViewHolder(holder: GameHolder, position: Int) {
-            val game = games[position]
-            holder.bind(game)
+            val food = foods[position]
+            holder.bind(food)
         }
     }
 
