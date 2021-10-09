@@ -26,4 +26,6 @@
     <string name="pirate_icon">Pirate Icon</string>
     <string name="fridge_friend">Fridge Friend</string>
     <string name="btnSignIn">Sign In</string>
+    <string name="list_of_existing_food">List Of Existing Food</string>
+    <string name="list_for_shopping">Shopping List</string>
 </resources>

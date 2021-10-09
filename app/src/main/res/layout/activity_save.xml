@@ -73,23 +73,25 @@
             android:hint="@string/team_b_name_hint"
             android:inputType="text"/>
 
+
         <Button
-            android:id="@+id/new_game"
+            android:id="@+id/existing_food_list"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             android:backgroundTint="#c2c2c2"
-            android:text="@string/new_game"
+            android:text="@string/list_of_existing_food"
             android:textColor="@android:color/black" />
 
         <Button
-            android:id="@+id/game_history"
+            android:id="@+id/shopping_list"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:backgroundTint="#c2c2c2"
-            android:text="@string/history_games"
+            android:text="@string/list_for_shopping"
             android:textColor="@android:color/black" />
+
 
     </LinearLayout>
 </LinearLayout>
