@@ -11,7 +11,7 @@ class BBViewModel : ViewModel() {
     val foods = mutableListOf<Food>()
 
     init {
-        for (i in 0 until 100) {
+        for (i in 0 until 20) {
             val food = Food()
             food.name = "Food #$i"
             food.expiration = "Expiration #$i"

@@ -55,8 +55,8 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val games = bbViewModel.foods
-        adapter = GameAdapter(games)
+        val foods = bbViewModel.foods
+        adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
 
