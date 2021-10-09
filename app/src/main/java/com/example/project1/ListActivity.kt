@@ -23,6 +23,7 @@ class ListActivity : AppCompatActivity() {
 
     private val itemViewModel: ItemViewModel by lazy {
         ViewModelProviders.of(this).get(ItemViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,8 @@ class ListActivity : AppCompatActivity() {
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         itemViewModel.currentIndex = currentIndex
 
-//        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { itemViewModel.setTeamAName(it) }
-//        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { itemViewModel.setTeamBName(it) }
+//        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
+//        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
 
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.list_fragment_container)
@@ -62,4 +63,3 @@ class ListActivity : AppCompatActivity() {
         }
     }
 }
-
