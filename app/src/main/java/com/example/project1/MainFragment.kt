@@ -327,9 +327,6 @@ class MainFragment : Fragment() {
 
     }
 
-
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when {
             requestCode == REQUEST_PHOTO -> {

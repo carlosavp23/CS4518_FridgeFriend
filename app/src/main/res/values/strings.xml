@@ -24,4 +24,6 @@
     <string name="team_b_name_hint">Team B Name</string>
     <string name="parrot_icon">Parrot Icon</string>
     <string name="pirate_icon">Pirate Icon</string>
+    <string name="fridge_friend">Fridge Friend</string>
+    <string name="btnSignIn">Sign In</string>
 </resources>

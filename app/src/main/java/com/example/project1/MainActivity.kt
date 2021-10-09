@@ -11,6 +11,20 @@ import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import android.app.Activity
+
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
@@ -30,8 +44,9 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "onCreate")
         setContentView(R.layout.activity_main)
 
-        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        bbViewModel.currentIndex = currentIndex
+    }
+    public override fun onStart() {
+        super.onStart()
 
         intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
         intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
@@ -47,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)

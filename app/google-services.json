@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "870931015182",
+    "project_id": "fridgefriendapp",
+    "storage_bucket": "fridgefriendapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870931015182:android:e5166e8d789d0798e7fe5f",
+        "android_client_info": {
+          "package_name": "com.example.project1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870931015182-nlhu7qolvmmou2bji7kjhb7vougkt65k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project1",
+            "certificate_hash": "cc3fac0b3702faa1a1e02500b626f83978b64493"
+          }
+        },
+        {
+          "client_id": "870931015182-1lvu3ebe9jpc3ab66aqn718vfdau2e9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7k2502pWA0Id9EEbfKrhUzzbr3WIZR9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870931015182-1lvu3ebe9jpc3ab66aqn718vfdau2e9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
