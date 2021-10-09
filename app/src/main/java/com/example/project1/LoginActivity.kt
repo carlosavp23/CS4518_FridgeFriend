@@ -6,7 +6,7 @@ import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import android.view.View
-import android.widget.Button
+
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
-        val btnSignIn: Button = findViewById<View>(R.id.btnSignIn) as Button
+        val btnSignIn = findViewById<View>(R.id.btnSignIn)
 
         btnSignIn.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
