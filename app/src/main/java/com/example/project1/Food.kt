@@ -1,6 +1,5 @@
 package com.example.project1.com.example.project1
 
-import com.example.project1.Team
 import java.util.*
 
 data class Food(var isChecked: Boolean = false,
