@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.Task
 import android.app.Activity
 import android.view.Menu
 import android.view.MenuItem
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -38,11 +37,14 @@ private const val EXTRA_TEAM_B_NAME =
 
 class MainActivity : AppCompatActivity() {
 
-    private val bbViewModel: BBViewModel by lazy {
-        ViewModelProviders.of(this).get(BBViewModel::class.java)
+    private val itemViewModel: ItemViewModel by lazy {
+        ViewModelProviders.of(this).get(ItemViewModel::class.java)
     }
     private val db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
+
+    private val RC_SIGN_IN = 9001
+    private var mGoogleSignInClient: GoogleSignInClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +57,11 @@ class MainActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
 
-        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
-        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
-
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
         if (currentFragment == null) {
-            val fragment = MainFragment()
-//            val fragment = GameListFragment.newInstance()
+//            val fragment = MainFragment()
+            val fragment = GameListFragment.newInstance()
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
@@ -71,10 +70,28 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        Log.w("Sign In: ", completedTask.toString())
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val idToken = account!!.idToken
+            Log.w("Sign In: ", idToken.toString())
+        } catch (e: ApiException) {
+            Log.w("Sign In: ", "signInResult:failed code=" + e.statusCode)
+        }
+    }
+
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
-        savedInstanceState.putInt(KEY_INDEX, bbViewModel.currentIndex)
+        savedInstanceState.putInt(KEY_INDEX, itemViewModel.currentIndex)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -103,4 +120,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

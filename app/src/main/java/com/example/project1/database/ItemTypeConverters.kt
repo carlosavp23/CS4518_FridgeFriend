@@ -1,12 +1,11 @@
 package com.example.project1.database
 
 import androidx.room.TypeConverter
-import com.example.project1.Game
-import com.example.project1.Team
+import com.example.project1.Item
 import java.nio.file.attribute.PosixFilePermissions.fromString
 import java.util.*
 
-class GameTypeConverters {
+class ItemTypeConverters {
     @TypeConverter
     fun fromDate(date: Date?): Long? {
         return date?.time
@@ -17,6 +16,7 @@ class GameTypeConverters {
             Date(it)
         }
     }
+
     @TypeConverter
     fun toUUID(uuid: String?): UUID? {
         return UUID.fromString(uuid)
@@ -25,20 +25,14 @@ class GameTypeConverters {
     fun fromUUID(uuid: UUID?): String? {
         return uuid?.toString()
     }
-//Team("Team A", 0, false)
-// “Team The Woz:42:false”
-    //in Team class:
-    //over ride toString
-    //add fromString
-
 
     @TypeConverter
-    fun toTeam(team: String): Team? {
-        var total = team.split(":")
-        return Team(UUID.fromString(total[0]),total[1], total[2].toInt(), total[3].toBoolean())
+    fun toItem(item: String): Item? {
+        var total = item.split(":")
+        return Item(UUID.fromString(total[0]),total[1], total[2].toInt())
     }
     @TypeConverter
-    fun fromTeam(team: Team): String? {
-        return team.id.toString().plus(":").plus(team.name).plus(":").plus(team.score.toString()).plus(":").plus(team.isWinner.toString())
+    fun fromItem(item: Item): String? {
+        return item.id.toString().plus(":").plus(item.name).plus(":").plus(item.date.toString())
     }
 }
