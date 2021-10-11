@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
             Log.w(TAG, "user not signed in..")
             return
         }
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, SaveActivity::class.java))
         finish()
         // Navigate to MainActivity
     }
