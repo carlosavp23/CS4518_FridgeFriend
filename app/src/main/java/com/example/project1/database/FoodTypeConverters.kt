@@ -1,11 +1,10 @@
 package com.example.project1.database
 
 import androidx.room.TypeConverter
-import com.example.project1.Item
-import java.nio.file.attribute.PosixFilePermissions.fromString
+import com.example.project1.Food
 import java.util.*
 
-class ItemTypeConverters {
+class FoodTypeConverters {
     @TypeConverter
     fun fromDate(date: Date?): Long? {
         return date?.time
@@ -27,12 +26,16 @@ class ItemTypeConverters {
     }
 
     @TypeConverter
-    fun toItem(item: String): Item? {
+    fun toFood(item: String): Food? {
         var total = item.split(":")
-        return Item(UUID.fromString(total[0]),total[1], total[2].toInt())
+        return Food(UUID.fromString(total[0]),total[1].toBoolean(), total[2], total[3], total[4])
     }
     @TypeConverter
-    fun fromItem(item: Item): String? {
-        return item.id.toString().plus(":").plus(item.name).plus(":").plus(item.date.toString())
+    fun fromFood(food: Food): String? {
+        return food.id.toString().plus(":")
+            .plus(food.isChecked.toString()).plus(":")
+            .plus(food.name).plus(":")
+            .plus(food.imageString).plus(":")
+            .plus(food.expiration)
     }
 }

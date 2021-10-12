@@ -21,9 +21,6 @@
     <string name="submit_button">SUBMIT</string>
     <string name="food_name_hint">Food Name</string>
     <string name="exp_date_hint">Expiration Date</string>
-    <string name="list_of_existing_food">List Of Food In Fridge</string>
-    <string name="list_for_shopping">Shopping List</string>
-    <string name="default_web_client_id" translatable="false">123.apps.googolplexes.com</string>
     <string name="history_games">Game History</string>
     <string name="team_a_name">Team A Name:</string>
     <string name="team_b_name">Team B Name:</string>
@@ -32,8 +29,14 @@
     <string name="parrot_icon">Parrot Icon</string>
     <string name="pirate_icon">Pirate Icon</string>
     <string name="fridge_friend">Fridge Friend</string>
+
+    <string name="btnSignIn">Sign In</string>
+    <string name="list_of_existing_food">List Of Existing Food</string>
+    <string name="list_for_shopping">Shopping List</string>
+
     <string name="food_in_my_fridge">Food In My Fridge</string>
     <string name="add_item">Add Item</string>
     <string name="item">Item</string>
     <string name="expiration">Expiration</string>
+
 </resources>

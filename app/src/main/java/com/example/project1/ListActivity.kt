@@ -14,15 +14,14 @@ import androidx.lifecycle.ViewModelProviders
 
 private const val TAG = "ListActivity"
 private const val KEY_INDEX = "index"
-private const val EXTRA_TEAM_A_NAME =
-    "com.example.project1.team_a_name"
-private const val EXTRA_TEAM_B_NAME =
-    "com.example.project1.team_b_name"
+private const val EXTRA_FOOD_NAME =
+    "com.example.project1.food_name"
+
 
 class ListActivity : AppCompatActivity() {
 
-    private val itemViewModel: ItemViewModel by lazy {
-        ViewModelProviders.of(this).get(ItemViewModel::class.java)
+    private val foodViewModel: FoodViewModel by lazy {
+        ViewModelProviders.of(this).get(FoodViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        itemViewModel.currentIndex = currentIndex
+        foodViewModel.currentIndex = currentIndex
 
 //        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
 //        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
@@ -51,14 +50,13 @@ class ListActivity : AppCompatActivity() {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
-        savedInstanceState.putInt(KEY_INDEX, itemViewModel.currentIndex)
+        savedInstanceState.putInt(KEY_INDEX, foodViewModel.currentIndex)
     }
 
     companion object {
-        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
+        fun newIntent(packageContext: Context, food_name: String): Intent {
             return Intent(packageContext, ListActivity::class.java).apply {
-                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
-                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
+                putExtra(EXTRA_FOOD_NAME, food_name)
             }
         }
     }

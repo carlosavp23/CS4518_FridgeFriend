@@ -44,7 +44,7 @@ class SaveActivity : AppCompatActivity() {
             val team_a_name = team_a_input.text.toString()
             val team_b_name = team_b_input.text.toString()
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = ListActivity.newIntent(this@SaveActivity, team_a_name, team_b_name)
+            val intent = ListActivity.newIntent(this@SaveActivity, team_a_name)
             startActivity(intent)
             Log.i(TAG, "onClickListener for new_game")
         }

@@ -4,12 +4,20 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.project1.com.example.project1.Food
+import java.io.File
+import java.util.*
 
-private const val TAG = "ItemViewModel"
+private const val TAG = "FoodViewModel"
 
-class ItemViewModel : ViewModel() {
+class FoodViewModel : ViewModel() {
+    private val foodRepository = FoodRepository.get()
+    val gameListLiveData = foodRepository.getFood()
     val foods = mutableListOf<Food>()
+
+    private val food = Food(UUID.randomUUID(),false, "food", "", "")
+
+    var currentIndex = 0
+
 
     init {
         for (i in 0 until 20) {
@@ -19,7 +27,20 @@ class ItemViewModel : ViewModel() {
             foods += food
         }
     }
-    var currentIndex = 0
+
+
+    fun getPhotoFile(food: Food): File {
+        return foodRepository.getPhotoFile(food)
+    }
+
+    fun setFood(name: String): Void? {
+        food.name = name
+        return null
+    }
+
+    fun getFood(): String {
+        return food.name
+    }
 
 //    fun getFoods(): MutableList<Food> {
 //        return foods

@@ -18,19 +18,31 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import android.app.Activity
+import android.view.Menu
+import android.view.MenuItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
-private const val EXTRA_TEAM_A_NAME =
-    "com.example.project1.team_a_name"
-private const val EXTRA_TEAM_B_NAME =
-    "com.example.project1.team_b_name"
+private const val EXTRA_FOOD_NAME =
+    "com.example.project1.food_name"
+private const val EXTRA_EXP_DATE =
+    "com.example.project1.exp_dat"
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val itemViewModel: ItemViewModel by lazy {
-        ViewModelProviders.of(this).get(ItemViewModel::class.java)
+    private val foodViewModel: FoodViewModel by lazy {
+        ViewModelProviders.of(this).get(FoodViewModel::class.java)
     }
+    private val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
 
     private val RC_SIGN_IN = 9001
     private var mGoogleSignInClient: GoogleSignInClient? = null
@@ -40,19 +52,13 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "onCreate")
         setContentView(R.layout.activity_main)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.server_client_id))
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        auth = Firebase.auth
 
-        //old vvvv
+        intent.getStringExtra(EXTRA_FOOD_NAME)?.let { foodViewModel.setFood(it) }
+    }
 
-        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        itemViewModel.currentIndex = currentIndex
-
-        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { itemViewModel.setTeamAName(it) }
-        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { itemViewModel.setTeamBName(it) }
+    public override fun onStart() {
+        super.onStart()
 
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
@@ -66,15 +72,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public override fun onStart() {
-        super.onStart()
-        val mGmailSignIn = findViewById<SignInButton>(R.id.sign_in_button)
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        Log.w("Sign In: ", account.toString())
-        mGmailSignIn.setOnClickListener {
-            signIn()
-        }
-    }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -93,17 +90,37 @@ class MainActivity : AppCompatActivity() {
             Log.w("Sign In: ", "signInResult:failed code=" + e.statusCode)
         }
     }
-    private fun signIn() {
-        val signInIntent = mGoogleSignInClient!!.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
-        savedInstanceState.putInt(KEY_INDEX, itemViewModel.currentIndex)
+        savedInstanceState.putInt(KEY_INDEX, foodViewModel.currentIndex)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
 
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.miLogout) {
+            Log.i(TAG, "Logout")
+            auth.signOut()
+            val logoutIntent = Intent(this, LoginActivity::class.java)
+            logoutIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(logoutIntent)
+        }
+            return super.onOptionsItemSelected(item)
+
+    }
+
+    companion object {
+        fun newIntent(packageContext: Context, food_name: String): Intent {
+            return Intent(packageContext, MainActivity::class.java).apply {
+                putExtra(EXTRA_FOOD_NAME, food_name)
+            }
+        }
+    }
 
 }
