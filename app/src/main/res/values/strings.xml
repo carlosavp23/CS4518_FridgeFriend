@@ -3,8 +3,7 @@
     <string name="name_of_app">Fridge Friend</string>
     <string name="team_a">Team A</string>
     <string name="team_b">Team B</string>
-    <string name="score_a">0</string>
-    <string name="score_b">0</string>
+
     <string name="add_3_a">+3 POINTS</string>
     <string name="add_3_b">+3 POINTS</string>
     <string name="add_2_a">+2 POINTS</string>
@@ -21,7 +20,6 @@
     <string name="submit_button">SUBMIT</string>
     <string name="food_name_hint">Food Name</string>
     <string name="exp_date_hint">Expiration Date</string>
-    <string name="default_web_client_id" translatable="false">123.apps.googolplexes.com</string>
     <string name="history_games">Game History</string>
     <string name="team_a_name">Team A Name:</string>
     <string name="team_b_name">Team B Name:</string>

@@ -3,8 +3,7 @@ package com.example.project1
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.example.project1.com.example.project1.Food
-import com.example.project1.database.FoodDatabase
+import com.example.project1.Food
 import java.io.File
 import java.util.*
 
@@ -12,7 +11,7 @@ private const val DATABASE_NAME = "food-database"
 
 class FoodRepository private constructor(context: Context) {
     private val filesDir = context.applicationContext.filesDir
-    private val database : FoodDatabase = Room.databaseBuilder(
+/*    private val database : FoodDatabase = Room.databaseBuilder(
         context.applicationContext,
         FoodDatabase::class.java,
         DATABASE_NAME
@@ -22,7 +21,7 @@ class FoodRepository private constructor(context: Context) {
 
     fun getFood(): LiveData<List<Food>> = foodDao.getFood()
 
-    fun getFood(id: UUID): LiveData<Food?> = foodDao.getFood(id)
+    fun getFood(id: UUID): LiveData<Food?> = foodDao.getFood(id)*/
 
     fun getPhotoFile(food: Food): File = File(filesDir, food.photoFileName)
 

@@ -1,4 +1,4 @@
-package com.example.project1.com.example.project1
+package com.example.project1
 
 import androidx.room.PrimaryKey
 import java.util.*

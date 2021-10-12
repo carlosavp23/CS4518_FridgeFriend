@@ -14,7 +14,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.project1.com.example.project1.Food
+import com.example.project1.Food
 import java.io.File
 
 private const val TAG = "AddItemActivity"
@@ -102,7 +102,7 @@ class AddFoodActivity : AppCompatActivity() {
         }
 
     }
-    override fun onDetach() {
+    fun onDetach() {
         this@AddFoodActivity.revokeUriPermission(photoUri,Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
     }
 
