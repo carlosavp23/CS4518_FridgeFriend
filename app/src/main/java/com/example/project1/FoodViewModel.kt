@@ -17,6 +17,8 @@ class FoodViewModel : ViewModel() {
 
     private val food = Food(UUID.randomUUID(),false, "food", "", "")
 
+    var currentIndex = 0
+
 
     init {
         for (i in 0 until 20) {
@@ -26,7 +28,7 @@ class FoodViewModel : ViewModel() {
             foods += food
         }
     }
-    var currentIndex = 0
+
 
     fun getPhotoFile(food: Food): File {
         return foodRepository.getPhotoFile(food)

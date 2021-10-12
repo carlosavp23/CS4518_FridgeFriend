@@ -30,7 +30,7 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        FoodViewModel.currentIndex = currentIndex
+        foodViewModel.currentIndex = currentIndex
 
 //        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
 //        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
