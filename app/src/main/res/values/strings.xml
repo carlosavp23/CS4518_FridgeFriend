@@ -21,7 +21,6 @@
     <string name="submit_button">SUBMIT</string>
     <string name="food_name_hint">Food Name</string>
     <string name="exp_date_hint">Expiration Date</string>
-    <string name="default_web_client_id" translatable="false">123.apps.googolplexes.com</string>
     <string name="history_games">Game History</string>
     <string name="team_a_name">Team A Name:</string>
     <string name="team_b_name">Team B Name:</string>
