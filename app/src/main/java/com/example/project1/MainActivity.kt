@@ -32,6 +32,8 @@ private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
 private const val EXTRA_FOOD_NAME =
     "com.example.project1.food_name"
+private const val EXTRA_EXP_DATE =
+    "com.example.project1.exp_dat"
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
+
+        intent.getStringExtra(EXTRA_FOOD_NAME)?.let { foodViewModel.setFood(it) }
     }
 
     public override fun onStart() {

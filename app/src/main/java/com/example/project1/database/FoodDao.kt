@@ -17,8 +17,8 @@ interface FoodDao {
     fun getFood(id: UUID): LiveData<Food?>
 
     @Update
-    fun updateFood(game: Food)
+    fun updateFood(food: Food)
 
     @Insert
-    fun addFood(game: Food)
+    fun addFood(food: Food)
 }
