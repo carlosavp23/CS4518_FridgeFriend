@@ -26,11 +26,11 @@ class GameListFragment : Fragment() {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
 //    }
 
-    private val itemViewModel: ItemViewModel by activityViewModels()
+    private val foodViewModel: FoodViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total games: ${itemViewModel.foods.size}")
+        Log.d(TAG, "Total games: ${foodViewModel.foods.size}")
     }
 
     companion object {
@@ -55,7 +55,7 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val foods = itemViewModel.foods
+        val foods = foodViewModel.foods
         adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
