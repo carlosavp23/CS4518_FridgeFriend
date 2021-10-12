@@ -42,6 +42,11 @@ class FoodViewModel : ViewModel() {
         return food.name
     }
 
+    fun flipChecked(food: Food): Void? {
+        food.isChecked = !food.isChecked
+        return null
+    }
+
 //    fun getFoods(): MutableList<Food> {
 //        return foods
 //    }
