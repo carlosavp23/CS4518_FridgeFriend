@@ -13,12 +13,12 @@ private const val TAG = "AddItemActivity"
 private const val EXTRA_SHOW_ADD =
     "com.example.project1.show_add"
 
-class AddItemActivity : AppCompatActivity() {
+class AddFoodActivity : AppCompatActivity() {
     private lateinit var save_string: TextView
     private lateinit var food_name_input: EditText
     private lateinit var exp_date_input: EditText
-    private lateinit var item_camera: ImageButton
-    private lateinit var item_photo: ImageView
+    private lateinit var food_camera: ImageButton
+    private lateinit var food_photo: ImageView
     private lateinit var submit_button: Button
 
 
@@ -34,8 +34,8 @@ class AddItemActivity : AppCompatActivity() {
 //        bbViewModel.currentIndex = currentIndex
 
         save_string = findViewById(R.id.save_string)
-        item_camera = findViewById<ImageButton>(R.id.item_camera)
-        item_photo = findViewById<ImageView>(R.id.item_photo)
+        food_camera = findViewById<ImageButton>(R.id.food_camera)
+        food_photo = findViewById<ImageView>(R.id.food_photo)
         submit_button = findViewById(R.id.submit_button)
         food_name_input = findViewById(R.id.food_name_input)
         exp_date_input = findViewById(R.id.exp_date_input)
@@ -44,7 +44,7 @@ class AddItemActivity : AppCompatActivity() {
             val food_name_input = food_name_input.text.toString()
             val exp_date_input = exp_date_input.text.toString()
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = MainActivity.newIntent(this@AddItemActivity, food_name_input, exp_date_input)
+            val intent = MainActivity.newIntent(this@AddFoodActivity, food_name_input, exp_date_input)
             startActivity(intent)
             Log.i(TAG, "onClickListener for submit_button")
         }
@@ -58,7 +58,7 @@ class AddItemActivity : AppCompatActivity() {
 
     companion object {
         fun newIntent(packageContext: Context, show_save: Boolean): Intent {
-            return Intent(packageContext, AddItemActivity::class.java).apply {
+            return Intent(packageContext, AddFoodActivity::class.java).apply {
                 putExtra(EXTRA_SHOW_ADD, show_save)
             }
         }

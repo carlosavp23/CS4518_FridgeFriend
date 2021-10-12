@@ -15,10 +15,9 @@ import androidx.fragment.app.activityViewModels
 
 private const val TAG = "MainFragment"
 private const val KEY_INDEX = "index"
-private const val EXTRA_TEAM_A_NAME =
-    "com.example.project1.team_a_name"
-private const val EXTRA_TEAM_B_NAME =
-    "com.example.project1.team_b_name"
+private const val EXTRA_FOOD_NAME =
+    "com.example.project1.food_name"
+
 
 class MainFragment : Fragment() {
     private lateinit var game: Game

@@ -30,15 +30,14 @@ import com.google.firebase.ktx.Firebase
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
-private const val EXTRA_TEAM_A_NAME =
-    "com.example.project1.team_a_name"
-private const val EXTRA_TEAM_B_NAME =
-    "com.example.project1.team_b_name"
+private const val EXTRA_FOOD_NAME =
+    "com.example.project1.food_name"
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val itemViewModel: ItemViewModel by lazy {
-        ViewModelProviders.of(this).get(ItemViewModel::class.java)
+    private val foodViewModel: FoodViewModel by lazy {
+        ViewModelProviders.of(this).get(FoodViewModel::class.java)
     }
     private val db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
-        savedInstanceState.putInt(KEY_INDEX, itemViewModel.currentIndex)
+        savedInstanceState.putInt(KEY_INDEX, foodViewModel.currentIndex)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -113,10 +112,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
+        fun newIntent(packageContext: Context, food_name: String): Intent {
             return Intent(packageContext, MainActivity::class.java).apply {
-                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
-                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
+                putExtra(EXTRA_FOOD_NAME, food_name)
             }
         }
     }

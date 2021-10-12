@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.project1.com.example.project1.Food
 
-private const val TAG = "ItemViewModel"
+private const val TAG = "FoodViewModel"
 
-class ItemViewModel : ViewModel() {
+class FoodViewModel : ViewModel() {
     val foods = mutableListOf<Food>()
 
     init {
