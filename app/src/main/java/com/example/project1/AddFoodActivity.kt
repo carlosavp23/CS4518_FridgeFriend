@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProviders
 import java.io.File
 
 private const val TAG = "AddItemActivity"
-//private const val KEY_INDEX = "index"
+private const val KEY_INDEX = "index"
 private const val EXTRA_SHOW_ADD =
     "com.example.project1.show_add"
 private const val REQUEST_PHOTO = 2
@@ -40,10 +40,12 @@ class AddFoodActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_save)
+        food = Food()
+        setContentView(R.layout.activity_add_item)
 
-//        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-//        bbViewModel.currentIndex = currentIndex
+
+        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        foodViewModel.currentIndex = currentIndex
 
         save_string = findViewById(R.id.save_string)
         food_camera = findViewById<ImageButton>(R.id.food_camera)
