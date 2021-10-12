@@ -3,7 +3,6 @@ package com.example.project1
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.example.project1.com.example.project1.Food
 import com.example.project1.database.FoodDatabase
 import java.io.File
 import java.util.*
@@ -36,7 +35,7 @@ class FoodRepository private constructor(context: Context) {
         }
         fun get(): FoodRepository {
             return INSTANCE ?:
-            throw IllegalStateException("GameRepository must be initialized")
+            throw IllegalStateException("FoodRepository must be initialized")
         }
     }
 }

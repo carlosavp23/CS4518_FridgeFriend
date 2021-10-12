@@ -12,8 +12,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.project1.com.example.project1.Game
-import com.example.project1.com.example.project1.Food
 
 private const val TAG = "GameListFragment"
 
