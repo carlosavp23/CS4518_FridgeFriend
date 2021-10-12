@@ -116,9 +116,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun newIntent(packageContext: Context, food_name: String): Intent {
+        fun newIntent(packageContext: Context, food_name: String, exp_date: String): Intent {
             return Intent(packageContext, MainActivity::class.java).apply {
                 putExtra(EXTRA_FOOD_NAME, food_name)
+                putExtra(EXTRA_EXP_DATE, exp_date)
+
             }
         }
     }
