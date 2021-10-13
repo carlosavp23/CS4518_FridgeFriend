@@ -17,11 +17,9 @@ private const val EXTRA_SHOW_SAVE =
     "com.example.project1.show_save"
 
 class SaveActivity : AppCompatActivity() {
-    private lateinit var save_string: TextView
-    private lateinit var new_game: Button
-    private lateinit var game_history: Button
-    private lateinit var team_a_input: EditText
-    private lateinit var team_b_input: EditText
+    private lateinit var existing_food_list: Button
+    private lateinit var shopping_list: Button
+
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
@@ -34,25 +32,21 @@ class SaveActivity : AppCompatActivity() {
 //        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
 //        bbViewModel.currentIndex = currentIndex
 
-        save_string = findViewById(R.id.save_string)
-        new_game = findViewById(R.id.new_game)
-        game_history = findViewById(R.id.game_history)
-        team_a_input = findViewById(R.id.team_a_input)
-        team_b_input = findViewById(R.id.team_b_input)
+        existing_food_list = findViewById(R.id.existing_food_list)
+        shopping_list = findViewById(R.id.shopping_list)
 
-        new_game.setOnClickListener { view: View ->
-            val team_a_name = team_a_input.text.toString()
-            val team_b_name = team_b_input.text.toString()
-//            val intent = Intent(this, MainActivity::class.java)
-            val intent = ListActivity.newIntent(this@SaveActivity, team_a_name)
+        existing_food_list.setOnClickListener { view: View ->
+
+            val intent = ListActivity.newIntent(this@SaveActivity, true)
             startActivity(intent)
-            Log.i(TAG, "onClickListener for new_game")
+            Log.i(TAG, "onClickListener for food in fridge")
         }
-        val show_save = intent.getBooleanExtra(EXTRA_SHOW_SAVE, false)
-        if(show_save){
-            save_string.visibility = View.VISIBLE
-        } else{
-            save_string.visibility = View.INVISIBLE
+
+        shopping_list.setOnClickListener { view: View ->
+
+            val intent = ListActivity.newIntent(this@SaveActivity, false)
+            startActivity(intent)
+            Log.i(TAG, "onClickListener for shopping list")
         }
     }
 

@@ -54,9 +54,9 @@ class ListActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun newIntent(packageContext: Context, food_name: String): Intent {
+        fun newIntent(packageContext: Context, list_name: Boolean): Intent {
             return Intent(packageContext, ListActivity::class.java).apply {
-                putExtra(EXTRA_FOOD_NAME, food_name)
+                putExtra(EXTRA_FOOD_NAME, list_name)
             }
         }
     }
