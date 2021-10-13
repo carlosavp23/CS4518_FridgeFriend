@@ -50,13 +50,23 @@
             android:inputType="text"
             android:gravity="center"/>
 
-        <EditText
+        <Button
+            android:id="@+id/pickDateBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#c2c2c2"
+            android:text="Expiration Date"
+            android:textColor="@android:color/black" />
+
+        <TextView
             android:id="@+id/exp_date_input"
-            android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="@string/exp_date_hint"
             android:inputType="text"
+            android:textSize="15sp"
             android:gravity="center"/>
 
         <ImageView
