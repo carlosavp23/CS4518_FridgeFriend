@@ -40,8 +40,10 @@ class ListActivity : AppCompatActivity() {
 
 //        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
         intent.getStringExtra(EXTRA_LIST_NAME)?.let { foodViewModel.setCurrentList(it) }
+        Log.i(TAG, "Getting intent")
 
         list_name.text = foodViewModel.currentList
+        Log.i(TAG, "setting list_name.text")
 
         add_item_button.setOnClickListener { view: View ->
 

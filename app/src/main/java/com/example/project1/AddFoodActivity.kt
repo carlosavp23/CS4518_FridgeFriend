@@ -79,13 +79,21 @@ class AddFoodActivity : AppCompatActivity() {
             "com.example.project1.fileprovider",
             photoFile)
 
+//        var food = Food(UUID.randomUUID(),false, food_name_input.text.toString(), photoUri.toString(), exp_date_input.text.toString())
+//        foodViewModel.addFoodItem(food)
+
         submit_button.setOnClickListener { view: View ->
             val food_name_input = food_name_input.text.toString()
             val exp_date_input = exp_date_input.text.toString()
+            var food = Food(UUID.randomUUID(),false, food_name_input, photoUri.toString(), exp_date_input)
+            foodViewModel.addFoodItem(food)
+
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = ListActivity.newIntent(this@AddFoodActivity, food_name_input,  exp_date_input)
+            val intent = ListActivity.newIntent(this@AddFoodActivity, foodViewModel.currentList)
             startActivity(intent)
+            val currentListInViewModel = foodViewModel.currentList.toString()
             Log.i(TAG, "onClickListener for submit_button")
+            Log.i(TAG, currentListInViewModel)
         }
 //        val show_save = intent.getBooleanExtra(EXTRA_SHOW_ADD, false)
 //        if(show_save){

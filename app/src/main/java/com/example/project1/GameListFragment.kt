@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 private const val TAG = "GameListFragment"
 
@@ -19,7 +21,7 @@ class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
     private var adapter: GameAdapter? = null
-    var isFoodInFridgeList: Boolean = true
+//    var isFoodInFridgeList: Boolean = true
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
@@ -29,7 +31,14 @@ class GameListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total foods: ${foodViewModel.foodsInFridge.size}")
+
+        var currentList = foodViewModel.currentList
+
+        if(currentList.equals("Food In My Fridge")){
+            Log.d(TAG, "Total foods: ${foodViewModel.foodsInFridge.size}")
+        } else if(currentList.equals("Shopping List")){
+            Log.d(TAG, "Total foods: ${foodViewModel.foodsInShoppingList.size}")
+        }
     }
 
     companion object {
@@ -54,7 +63,16 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val foods = foodViewModel.foodsInFridge
+        Log.i(TAG, "updateUI in called")
+        var currentList = foodViewModel.currentList
+        var foods = foodViewModel.foodsInFridge
+        if(currentList.equals("Food In My Fridge")){
+            foods = foodViewModel.foodsInFridge
+        } else if(currentList.equals("Shopping List")){
+            foods = foodViewModel.foodsInShoppingList
+        } else{
+            foods = foodViewModel.foodsInFridge
+        }
         adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
@@ -72,6 +90,7 @@ class GameListFragment : Fragment() {
 
         fun bind(food: Food) {
             this.food = food
+            Log.i(TAG, "In bind food")
             val foodImageString = this.food.imageString
             if(this.food.isChecked){
                 checkBoxImageView.setImageResource(R.drawable.checkbox)

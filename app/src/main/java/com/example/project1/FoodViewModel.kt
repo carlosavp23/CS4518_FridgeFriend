@@ -23,14 +23,25 @@ class FoodViewModel : ViewModel() {
 
     init {
         for (i in 0 until 20) {
-            val food = Food()
-            food.name = "Food #$i"
-            food.expiration = "Expiration #$i"
-            foodsInFridge += food
-            foodsInShoppingList += food
+            val food1 = Food()
+            food1.name = "Food FIMF #$i"
+            food1.expiration = "Expiration FIMF #$i"
+            val food2 = Food()
+            food2.name = "Food SL #$i"
+            food2.expiration = "Expiration SL #$i"
+            foodsInFridge += food1
+            foodsInShoppingList += food2
         }
     }
 
+    fun addFoodItem(food: Food): Void? {
+        if(currentList.equals("Food In My Fridge")){
+            foodsInFridge += food
+        } else if(currentList.equals("Shopping List")){
+            foodsInShoppingList += food
+        }
+        return null
+    }
 
     fun getPhotoFile(food: Food): File {
         return foodRepository.getPhotoFile(food)
