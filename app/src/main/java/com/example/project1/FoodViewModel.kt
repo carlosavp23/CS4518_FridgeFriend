@@ -12,7 +12,8 @@ private const val TAG = "FoodViewModel"
 class FoodViewModel : ViewModel() {
     private val foodRepository = FoodRepository.get()
     val gameListLiveData = foodRepository.getFood()
-    val foods = mutableListOf<Food>()
+    val foodsInFridge = mutableListOf<Food>()
+    val foodsInShoppingList = mutableListOf<Food>()
 
     private val food = Food(UUID.randomUUID(),false, "food", "", "")
 
@@ -24,7 +25,8 @@ class FoodViewModel : ViewModel() {
             val food = Food()
             food.name = "Food #$i"
             food.expiration = "Expiration #$i"
-            foods += food
+            foodsInFridge += food
+            foodsInShoppingList += food
         }
     }
 

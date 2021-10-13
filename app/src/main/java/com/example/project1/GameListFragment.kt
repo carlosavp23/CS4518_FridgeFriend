@@ -19,6 +19,7 @@ class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
     private var adapter: GameAdapter? = null
+    var isFoodInFridgeList: Boolean = true
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
@@ -28,7 +29,7 @@ class GameListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total foods: ${foodViewModel.foods.size}")
+        Log.d(TAG, "Total foods: ${foodViewModel.foodsInFridge.size}")
     }
 
     companion object {
@@ -53,7 +54,7 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val foods = foodViewModel.foods
+        val foods = foodViewModel.foodsInFridge
         adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
