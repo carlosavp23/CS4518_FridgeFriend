@@ -39,10 +39,10 @@
             android:name=".AddFoodActivity"
             android:exported="true">
         </activity>
-<!--        <activity-->
-<!--            android:name=".LoginActivity"-->
-<!--            android:exported="true">-->
-<!--        </activity>-->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+        </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.project1.fileprovider"
