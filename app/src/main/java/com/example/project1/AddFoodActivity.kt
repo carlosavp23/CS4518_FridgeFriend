@@ -20,8 +20,8 @@ import java.util.*
 
 private const val TAG = "AddItemActivity"
 private const val KEY_INDEX = "index"
-private const val EXTRA_SHOW_ADD =
-    "com.example.project1.show_add"
+//private const val EXTRA_LIST_NAME =
+//    "com.example.project1.list_name"
 private const val REQUEST_PHOTO = 2
 
 class AddFoodActivity : AppCompatActivity() {
@@ -83,16 +83,16 @@ class AddFoodActivity : AppCompatActivity() {
             val food_name_input = food_name_input.text.toString()
             val exp_date_input = exp_date_input.text.toString()
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = MainActivity.newIntent(this@AddFoodActivity, food_name_input,  exp_date_input)
+            val intent = ListActivity.newIntent(this@AddFoodActivity, food_name_input,  exp_date_input)
             startActivity(intent)
             Log.i(TAG, "onClickListener for submit_button")
         }
-        val show_save = intent.getBooleanExtra(EXTRA_SHOW_ADD, false)
-        if(show_save){
-            save_string.visibility = View.VISIBLE
-        } else{
-            save_string.visibility = View.INVISIBLE
-        }
+//        val show_save = intent.getBooleanExtra(EXTRA_SHOW_ADD, false)
+//        if(show_save){
+//            save_string.visibility = View.VISIBLE
+//        } else{
+//            save_string.visibility = View.INVISIBLE
+//        }
     }
 
     override fun onStart() {
@@ -152,9 +152,9 @@ class AddFoodActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun newIntent(packageContext: Context, show_save: Boolean): Intent {
+        fun newIntent(packageContext: Context): Intent {
             return Intent(packageContext, AddFoodActivity::class.java).apply {
-                putExtra(EXTRA_SHOW_ADD, show_save)
+//                putExtra(EXTRA_LIST_NAME, list_name)
             }
         }
     }

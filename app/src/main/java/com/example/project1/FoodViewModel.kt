@@ -14,6 +14,7 @@ class FoodViewModel : ViewModel() {
     val gameListLiveData = foodRepository.getFood()
     val foodsInFridge = mutableListOf<Food>()
     val foodsInShoppingList = mutableListOf<Food>()
+    var currentList: String = ""
 
     private val food = Food(UUID.randomUUID(),false, "food", "", "")
 
@@ -46,6 +47,11 @@ class FoodViewModel : ViewModel() {
 
     fun flipChecked(food: Food): Void? {
         food.isChecked = !food.isChecked
+        return null
+    }
+
+    fun setCurrentList(list: String): Void? {
+        currentList = list
         return null
     }
 

@@ -37,14 +37,14 @@ class SaveActivity : AppCompatActivity() {
 
         existing_food_list.setOnClickListener { view: View ->
 
-            val intent = ListActivity.newIntent(this@SaveActivity, true)
+            val intent = ListActivity.newIntent(this@SaveActivity, "Food In Fridge")
             startActivity(intent)
             Log.i(TAG, "onClickListener for food in fridge")
         }
 
         shopping_list.setOnClickListener { view: View ->
 
-            val intent = ListActivity.newIntent(this@SaveActivity, false)
+            val intent = ListActivity.newIntent(this@SaveActivity, "Shopping List")
             startActivity(intent)
             Log.i(TAG, "onClickListener for shopping list")
         }
