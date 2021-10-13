@@ -25,11 +25,11 @@ class GameListFragment : Fragment() {
             ViewModelProviders.of(this).get(foodListViewModel::class.java)
         }
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+/*        override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             Log.d(TAG, "Total crimes: ${foodListViewModel.foodsInFridge.size}")
             Log.d(TAG, "Total crimes: ${foodListViewModel.foodsInShoppingList.size}")
-        }
+        }*/
         companion object {
             fun newInstance(): GameListFragment {
                 return GameListFragment()
