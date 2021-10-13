@@ -8,44 +8,33 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 private const val TAG = "GameListFragment"
 
 class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
-    private var adapter: GameAdapter? = null
+    private var adapter: GameAdapter? = GameAdapter(emptyList())
 //    var isFoodInFridgeList: Boolean = true
 
-//    private val bbViewModel: BBViewModel by lazy {
-//        ViewModelProviders.of(this).get(BBViewModel::class.java)
-//    }
-
-    private val foodViewModel: FoodViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        var currentList = foodViewModel.currentList
-
-        if(currentList.equals("Food In My Fridge")){
-            Log.d(TAG, "Total foods: ${foodViewModel.foodsInFridge.size}")
-        } else if(currentList.equals("Shopping List")){
-            Log.d(TAG, "Total foods: ${foodViewModel.foodsInShoppingList.size}")
+        private val foodListViewModel: FoodListViewModel by lazy {
+            ViewModelProviders.of(this).get(foodListViewModel::class.java)
         }
-    }
 
-    companion object {
-        fun newInstance(): GameListFragment {
-            return GameListFragment()
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            Log.d(TAG, "Total crimes: ${foodListViewModel.foodsInFridge.size}")
+            Log.d(TAG, "Total crimes: ${foodListViewModel.foodsInShoppingList.size}")
         }
-    }
+        companion object {
+            fun newInstance(): GameListFragment {
+                return GameListFragment()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,14 +45,55 @@ class GameListFragment : Fragment() {
         gameRecyclerView =
             view.findViewById(R.id.game_recycler_view) as RecyclerView
         gameRecyclerView.layoutManager = LinearLayoutManager(context)
+        gameRecyclerView.adapter = adapter
 
-        updateUI()
+       // updateUI()
 
         return view
     }
 
-    private fun updateUI() {
-        Log.i(TAG, "updateUI in called")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var currentList = foodListViewModel.currentList
+
+        if(currentList.equals("Food In My Fridge")){
+            foodListViewModel.foodListLiveData.observe(
+                viewLifecycleOwner,
+                Observer { foodsInFridge ->
+                    foodsInFridge?.let {
+                        Log.i(TAG, "Got games ${foodsInFridge.size}")
+                        updateUI(foodsInFridge)
+                    }
+                })
+
+
+        } else if(currentList.equals("Shopping List")){
+            foodListViewModel.foodListLiveData.observe(
+                viewLifecycleOwner,
+                Observer { foodsInShoppingList ->
+                    foodsInShoppingList?.let {
+                        Log.i(TAG, "Got games ${foodsInShoppingList.size}")
+                        updateUI(foodsInShoppingList)
+                    }
+                })
+
+
+        } else{
+            foodListViewModel.foodListLiveData.observe(
+                viewLifecycleOwner,
+                Observer { foodsInFridge ->
+                    foodsInFridge?.let {
+                        Log.i(TAG, "Got games ${foodsInFridge.size}")
+                        updateUI(foodsInFridge)
+                    }
+                })
+        }
+
+
+        }
+
+    private fun updateUI(foods: List<Food>) {
+/*        Log.i(TAG, "updateUI in called")
         var currentList = foodViewModel.currentList
         var foods = foodViewModel.foodsInFridge
         if(currentList.equals("Food In My Fridge")){
@@ -72,7 +102,7 @@ class GameListFragment : Fragment() {
             foods = foodViewModel.foodsInShoppingList
         } else{
             foods = foodViewModel.foodsInFridge
-        }
+        }*/
         adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
@@ -101,7 +131,7 @@ class GameListFragment : Fragment() {
             foodImageImageView.setImageResource(R.drawable.salad)
             foodExpirationTextView.text = this.food.expiration
             checkBoxImageView.setOnClickListener { view: View ->
-                foodViewModel.flipChecked(food)
+                foodListViewModel.flipChecked(food)
                 if(this.food.isChecked){
                     checkBoxImageView.setImageResource(R.drawable.checkbox)
                 } else{

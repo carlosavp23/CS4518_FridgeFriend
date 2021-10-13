@@ -19,7 +19,7 @@ class FoodRepository private constructor(context: Context) {
 
     private val foodDao = database.foodDao()
 
-    fun getFood(): LiveData<List<Food>> = foodDao.getFood()
+    fun getFoods(): LiveData<List<Food>> = foodDao.getFoods()
 
     fun getFood(id: UUID): LiveData<Food?> = foodDao.getFood(id)
 

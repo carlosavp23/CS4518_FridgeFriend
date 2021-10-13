@@ -11,7 +11,7 @@ private const val TAG = "FoodViewModel"
 
 class FoodViewModel : ViewModel() {
     private val foodRepository = FoodRepository.get()
-    val gameListLiveData = foodRepository.getFood()
+    val foodListLiveData = foodRepository.getFoods()
     val foodsInFridge = mutableListOf<Food>()
     val foodsInShoppingList = mutableListOf<Food>()
     var currentList: String = ""
@@ -21,7 +21,7 @@ class FoodViewModel : ViewModel() {
     var currentIndex = 0
 
 
-    init {
+/*    init {
         for (i in 0 until 20) {
             val food1 = Food()
             food1.name = "Food FIMF #$i"
@@ -32,7 +32,7 @@ class FoodViewModel : ViewModel() {
             foodsInFridge += food1
             foodsInShoppingList += food2
         }
-    }
+    }*/
 
     fun addFoodItem(food: Food): Void? {
         if(currentList.equals("Food In My Fridge")){

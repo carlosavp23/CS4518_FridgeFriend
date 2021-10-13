@@ -10,8 +10,10 @@ import java.util.*
 
 @Dao
 interface FoodDao {
+
+
     @Query("SELECT * FROM food")
-    fun getFood(): LiveData<List<Food>>
+    fun getFoods(): LiveData<List<Food>>
 
     @Query("SELECT * FROM food WHERE id=(:id)")
     fun getFood(id: UUID): LiveData<Food?>

@@ -37,8 +37,8 @@ class AddFoodActivity : AppCompatActivity() {
     private lateinit var photoUri: Uri
 
 
-    private val foodViewModel: FoodViewModel by lazy {
-        ViewModelProviders.of(this).get(FoodViewModel::class.java)
+    private val foodListViewModel: FoodListViewModel by lazy {
+        ViewModelProviders.of(this).get(FoodListViewModel::class.java)
    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class AddFoodActivity : AppCompatActivity() {
 
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        foodViewModel.currentIndex = currentIndex
+        foodListViewModel.currentIndex = currentIndex
 
         save_string = findViewById(R.id.save_string)
         food_camera = findViewById<ImageButton>(R.id.food_camera)
@@ -74,7 +74,7 @@ class AddFoodActivity : AppCompatActivity() {
 
 
 
-        photoFile = foodViewModel.getPhotoFile(food)
+        photoFile = foodListViewModel.getPhotoFile(food)
         photoUri = FileProvider.getUriForFile(this@AddFoodActivity,
             "com.example.project1.fileprovider",
             photoFile)
@@ -86,12 +86,12 @@ class AddFoodActivity : AppCompatActivity() {
             val food_name_input = food_name_input.text.toString()
             val exp_date_input = exp_date_input.text.toString()
             var food = Food(UUID.randomUUID(),false, food_name_input, photoUri.toString(), exp_date_input)
-            foodViewModel.addFoodItem(food)
+            foodListViewModel.addFoodItem(food)
 
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = ListActivity.newIntent(this@AddFoodActivity, foodViewModel.currentList)
+            val intent = ListActivity.newIntent(this@AddFoodActivity, foodListViewModel.currentList)
             startActivity(intent)
-            val currentListInViewModel = foodViewModel.currentList.toString()
+            val currentListInViewModel = foodListViewModel.currentList.toString()
             Log.i(TAG, "onClickListener for submit_button")
             Log.i(TAG, currentListInViewModel)
         }
