@@ -12,8 +12,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.project1.com.example.project1.Game
-import com.example.project1.com.example.project1.Food
 
 private const val TAG = "GameListFragment"
 
@@ -21,6 +19,7 @@ class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
     private var adapter: GameAdapter? = null
+    var isFoodInFridgeList: Boolean = true
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
@@ -30,7 +29,7 @@ class GameListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total games: ${foodViewModel.foods.size}")
+        Log.d(TAG, "Total foods: ${foodViewModel.foodsInFridge.size}")
     }
 
     companion object {
@@ -55,7 +54,7 @@ class GameListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val foods = foodViewModel.foods
+        val foods = foodViewModel.foodsInFridge
         adapter = GameAdapter(foods)
         gameRecyclerView.adapter = adapter
     }
@@ -82,7 +81,23 @@ class GameListFragment : Fragment() {
             foodNameTextView.text = this.food.name
             foodImageImageView.setImageResource(R.drawable.salad)
             foodExpirationTextView.text = this.food.expiration
+            checkBoxImageView.setOnClickListener { view: View ->
+                foodViewModel.flipChecked(food)
+                if(this.food.isChecked){
+                    checkBoxImageView.setImageResource(R.drawable.checkbox)
+                } else{
+                    checkBoxImageView.setImageResource(R.drawable.blank_check_box)
+                }
+//            val food_name_input = food_name_input.text.toString()
+//            val exp_date_input = exp_date_input.text.toString()
+                Log.i(TAG, "onClickListener for checkBoxImageView")
+            }
         }
+//        checkBoxImageView.setOnClickListener { view: View ->
+////            val food_name_input = food_name_input.text.toString()
+////            val exp_date_input = exp_date_input.text.toString()
+//            Log.i(TAG, "onClickListener for checkBoxImageView")
+//        }
     }
 
     private inner class GameAdapter(var foods: List<Food>)

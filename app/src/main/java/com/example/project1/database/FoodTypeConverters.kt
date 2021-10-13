@@ -1,7 +1,7 @@
 package com.example.project1.database
 
 import androidx.room.TypeConverter
-import com.example.project1.com.example.project1.Food
+import com.example.project1.Food
 import java.util.*
 
 class FoodTypeConverters {

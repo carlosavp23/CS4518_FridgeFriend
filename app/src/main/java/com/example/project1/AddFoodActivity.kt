@@ -1,6 +1,7 @@
 package com.example.project1
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,11 +15,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.project1.com.example.project1.Food
 import java.io.File
+import java.util.*
 
 private const val TAG = "AddItemActivity"
-//private const val KEY_INDEX = "index"
+private const val KEY_INDEX = "index"
 private const val EXTRA_SHOW_ADD =
     "com.example.project1.show_add"
 private const val REQUEST_PHOTO = 2
@@ -27,10 +28,11 @@ class AddFoodActivity : AppCompatActivity() {
     private lateinit var food: Food
     private lateinit var save_string: TextView
     private lateinit var food_name_input: EditText
-    private lateinit var exp_date_input: EditText
+    private lateinit var exp_date_input: TextView
     private lateinit var food_camera: ImageButton
     private lateinit var food_photo: ImageView
     private lateinit var submit_button: Button
+    private lateinit var pickDateBtn: Button
     private lateinit var photoFile: File
     private lateinit var photoUri: Uri
 
@@ -41,10 +43,12 @@ class AddFoodActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_save)
+        food = Food()
+        setContentView(R.layout.activity_add_item)
 
-//        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-//        bbViewModel.currentIndex = currentIndex
+
+        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        foodViewModel.currentIndex = currentIndex
 
         save_string = findViewById(R.id.save_string)
         food_camera = findViewById<ImageButton>(R.id.food_camera)
@@ -52,6 +56,23 @@ class AddFoodActivity : AppCompatActivity() {
         submit_button = findViewById(R.id.submit_button)
         food_name_input = findViewById(R.id.food_name_input)
         exp_date_input = findViewById(R.id.exp_date_input)
+        pickDateBtn = findViewById(R.id.pickDateBtn)
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        pickDateBtn.setOnClickListener{
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
+            exp_date_input.setText(""+ mMonth + "/" + mDay + "/" + mYear)}, year, month, day)
+
+            dpd.show()
+        }
+
+        // .getString(R.string.date_placeholder, year, month, day)
+
+
 
         photoFile = foodViewModel.getPhotoFile(food)
         photoUri = FileProvider.getUriForFile(this@AddFoodActivity,
@@ -62,7 +83,7 @@ class AddFoodActivity : AppCompatActivity() {
             val food_name_input = food_name_input.text.toString()
             val exp_date_input = exp_date_input.text.toString()
 //            val intent = Intent(this, MainActivity::class.java)
-            val intent = MainActivity.newIntent(this@AddFoodActivity, food_name_input)
+            val intent = MainActivity.newIntent(this@AddFoodActivity, food_name_input,  exp_date_input)
             startActivity(intent)
             Log.i(TAG, "onClickListener for submit_button")
         }
@@ -102,7 +123,7 @@ class AddFoodActivity : AppCompatActivity() {
         }
 
     }
-    override fun onDetach() {
+    fun onDetach() {
         this@AddFoodActivity.revokeUriPermission(photoUri,Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
     }
 

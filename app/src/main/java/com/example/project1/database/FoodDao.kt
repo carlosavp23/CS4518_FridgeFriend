@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.project1.com.example.project1.Food
+import com.example.project1.Food
 import java.util.*
 
 @Dao

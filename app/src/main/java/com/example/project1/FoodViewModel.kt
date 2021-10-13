@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.project1.com.example.project1.Food
 import java.io.File
 import java.util.*
 
@@ -13,7 +12,8 @@ private const val TAG = "FoodViewModel"
 class FoodViewModel : ViewModel() {
     private val foodRepository = FoodRepository.get()
     val gameListLiveData = foodRepository.getFood()
-    val foods = mutableListOf<Food>()
+    val foodsInFridge = mutableListOf<Food>()
+    val foodsInShoppingList = mutableListOf<Food>()
 
     private val food = Food(UUID.randomUUID(),false, "food", "", "")
 
@@ -25,7 +25,8 @@ class FoodViewModel : ViewModel() {
             val food = Food()
             food.name = "Food #$i"
             food.expiration = "Expiration #$i"
-            foods += food
+            foodsInFridge += food
+            foodsInShoppingList += food
         }
     }
 
@@ -41,6 +42,11 @@ class FoodViewModel : ViewModel() {
 
     fun getFood(): String {
         return food.name
+    }
+
+    fun flipChecked(food: Food): Void? {
+        food.isChecked = !food.isChecked
+        return null
     }
 
 //    fun getFoods(): MutableList<Food> {
