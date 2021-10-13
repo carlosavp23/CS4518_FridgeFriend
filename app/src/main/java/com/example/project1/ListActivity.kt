@@ -23,8 +23,8 @@ class ListActivity : AppCompatActivity() {
     private lateinit var list_name: TextView
     private lateinit var add_item_button: Button
 
-    private val foodViewModel: FoodViewModel by lazy {
-        ViewModelProviders.of(this).get(FoodViewModel::class.java)
+    private val foodListViewModel: FoodListViewModel by lazy {
+        ViewModelProviders.of(this).get(FoodListViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,13 @@ class ListActivity : AppCompatActivity() {
         add_item_button = findViewById(R.id.add_item_button)
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        foodViewModel.currentIndex = currentIndex
+        foodListViewModel.currentIndex = currentIndex
 
 //        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
-        intent.getStringExtra(EXTRA_LIST_NAME)?.let { foodViewModel.setCurrentList(it) }
+        intent.getStringExtra(EXTRA_LIST_NAME)?.let { foodListViewModel.setCurrentList(it) }
         Log.i(TAG, "Getting intent")
 
-        list_name.text = foodViewModel.currentList
+        list_name.text = foodListViewModel.currentList
         Log.i(TAG, "setting list_name.text")
 
         add_item_button.setOnClickListener { view: View ->
@@ -67,7 +67,7 @@ class ListActivity : AppCompatActivity() {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
-        savedInstanceState.putInt(KEY_INDEX, foodViewModel.currentIndex)
+        savedInstanceState.putInt(KEY_INDEX, foodListViewModel.currentIndex)
     }
 
     companion object {
